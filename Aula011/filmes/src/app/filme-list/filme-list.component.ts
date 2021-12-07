@@ -1,6 +1,7 @@
 import { Filme } from './../model/Filme';
 import { FilmeService } from './../services/filme.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filme-list',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class FilmeListComponent implements OnInit {
   lista:Filme[] = [];
 
-  constructor(private filmeService:FilmeService) {
+  constructor(private filmeService:FilmeService, private router:Router) {
     this.listar();
   }
 
@@ -19,5 +20,16 @@ export class FilmeListComponent implements OnInit {
 
   private listar(){
     this.filmeService.listar().subscribe(  (filmes)=> this.lista=filmes);
+  }
+
+  editar(id:number){
+    this.router.navigate(['/filmes/editar', id]);
+  }
+
+  deletar(id:number){
+    this.filmeService.deletar(id).subscribe((msg)=>{
+      alert(msg);
+      this.listar();
+    });
   }
 }

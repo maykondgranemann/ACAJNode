@@ -2,13 +2,14 @@
 <p>Lista de filmes</p>
 
 <a href="/filmes/cadastrar" class="btn btn-success" >Novo filme</a>
-<table *ngIf="lista.length>0; else listaVazia">
+<table class="table" *ngIf="lista.length>0; else listaVazia">
   <thead>
     <tr>
       <th>Id</th>
       <th>Nome</th>
       <th>Diretor</th>
       <th>Genero</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,10 @@
       <td>{{f.nome}}</td>
       <td>{{f.nomeDiretor}}</td>
       <td>{{f.genero}}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" (click)="editar(f.id)" >Editar</button> |
+        <button class="btn btn-danger btn-sm" (click)="deletar(f.id)">Deletar</button>
+      </td>
     </tr>
   </tbody>
 </table>

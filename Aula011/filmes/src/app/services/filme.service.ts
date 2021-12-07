@@ -14,9 +14,20 @@ export class FilmeService {
   }
 
   salvar(filme:Filme):Observable<string>{
+    if(filme.id){
+      return this.httpClient.put(`${this.url}/${filme.id}`, filme, {responseType: 'text'})
+    }
     return this.httpClient.post(this.url, filme, {responseType: 'text'})
   }
   listar():Observable<Filme[]> {
     return this.httpClient.get<Filme[]>(this.url);
+  }
+
+  listarPorId(id:number):Observable<Filme> {
+    return this.httpClient.get<Filme>(`${this.url}/${id}`);
+  }
+
+  deletar(id:number):Observable<string>{
+    return this.httpClient.delete(`${this.url}/${id}`, {responseType: 'text'})
   }
 }

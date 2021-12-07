@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'filmes', component: FilmeListComponent },
   { path: 'filmes/cadastrar', component: FilmeFormComponent },
+  { path: 'filmes/editar/:id', component: FilmeFormComponent },
 ];
 
 @NgModule({
