@@ -1,3 +1,4 @@
+import { Filme } from './../model/Filme';
 import { FilmeService } from './../services/filme.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filme-list.component.css']
 })
 export class FilmeListComponent implements OnInit {
-  lista:any[] = [];
+  lista:Filme[] = [];
 
   constructor(private filmeService:FilmeService) {
     this.listar();
@@ -17,6 +18,6 @@ export class FilmeListComponent implements OnInit {
   }
 
   private listar(){
-    this.lista = this.filmeService.listar();
+    this.filmeService.listar().subscribe(  (filmes)=> this.lista=filmes);
   }
 }

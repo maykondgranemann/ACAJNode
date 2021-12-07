@@ -1,5 +1,7 @@
+import { Filme } from './../model/Filme';
 import { Component, OnInit } from '@angular/core';
 import { FilmeService } from '../services/filme.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-filme-form',
@@ -7,34 +9,23 @@ import { FilmeService } from '../services/filme.service';
   styleUrls: ['./filme-form.component.css']
 })
 export class FilmeFormComponent implements OnInit {
-  id:number=0;
-  nome:string;
-  nomeDiretor:string;
-  genero:string;
+  filme = {} as Filme;
 
   constructor(private filmeService:FilmeService) {
-    this.nome="";
-    this.nomeDiretor="";
-    this.genero="";
   }
 
   ngOnInit(): void {}
 
   salvar(){
-    let filme = {
-      "id": this.id,
-      "nome": this.nome,
-      "nomeDiretor": this.nomeDiretor,
-      "genero": this.genero
-    }
-    this.filmeService.salvar(filme);
-    this.limpar();
+    this.filmeService.salvar(this.filme).subscribe((msg)=>{
+      console.log(msg);
+      this.limpar();
+    });
+
   }
 
   private limpar(){
-    this.nome = "";
-    this.nomeDiretor = "";
-    this.genero = "";
+    this.filme = {} as Filme;
   }
 
 }

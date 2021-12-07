@@ -1,9 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app-component/app.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { FilmeFormComponent } from './filme-form/filme-form.component';
 import { FilmeListComponent } from './filme-list/filme-list.component';
 
@@ -16,7 +17,8 @@ import { FilmeListComponent } from './filme-list/filme-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
